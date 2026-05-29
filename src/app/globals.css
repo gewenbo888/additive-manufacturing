@@ -1,0 +1,148 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink: #06070a;
+  --signal: #3d8bfd;
+  --amber: #f5a623;
+  --iris: #9b6dff;
+  --mint: #2fd4a8;
+  --ghost: #e8ecf4;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--ink);
+  color: var(--ghost);
+}
+
+body {
+  background-color: #06070a;
+  background-image:
+    radial-gradient(ellipse 1100px 620px at 14% -10%, rgba(61, 139, 253, 0.16), transparent 60%),
+    radial-gradient(ellipse 960px 540px at 90% 4%, rgba(155, 109, 255, 0.10), transparent 62%),
+    radial-gradient(ellipse 1280px 760px at 50% 124%, rgba(47, 212, 168, 0.10), transparent 60%);
+  font-family: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: 0.004em;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: rgba(61, 139, 253, 0.4); color: #f6f8fc; }
+
+/* geometric machined display — the typeface of a control surface */
+.display { font-family: "Space Grotesk", ui-sans-serif, system-ui, sans-serif; font-weight: 600; letter-spacing: -0.018em; }
+.zh { font-family: "Noto Sans SC", sans-serif; font-weight: 500; letter-spacing: 0; }
+.label-mono {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  letter-spacing: 0.26em; text-transform: uppercase; font-size: 0.62rem; color: #a8d3ff;
+}
+.mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
+.tnum { font-variant-numeric: tabular-nums; }
+
+/* luminous interface text — the glow of an active element */
+.signal-text {
+  color: #c7e0ff;
+  text-shadow: 0 0 24px rgba(61, 139, 253, 0.6), 0 0 70px rgba(31, 111, 224, 0.32);
+}
+.amber-text {
+  color: #ffd98c;
+  text-shadow: 0 0 22px rgba(245, 166, 35, 0.55);
+}
+.iris-text {
+  color: #d6c4ff;
+  text-shadow: 0 0 22px rgba(155, 109, 255, 0.55);
+}
+.mint-text {
+  color: #9bf0d8;
+  text-shadow: 0 0 22px rgba(47, 212, 168, 0.5);
+}
+
+/* holographic panel — frosted glass interface layer floating over the substrate */
+.holo {
+  background: linear-gradient(155deg, rgba(22, 28, 42, 0.66), rgba(8, 10, 16, 0.92));
+  border: 1px solid rgba(168, 211, 255, 0.12);
+  backdrop-filter: blur(11px);
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+}
+.holo:hover { border-color: rgba(61, 139, 253, 0.42); box-shadow: 0 0 44px -16px rgba(61, 139, 253, 0.55); }
+
+/* terminal panel — a sharper machined console surface */
+.terminal {
+  background: linear-gradient(180deg, rgba(15, 19, 29, 0.92), rgba(8, 10, 16, 0.97));
+  border: 1px solid rgba(168, 211, 255, 0.14);
+  box-shadow: inset 0 1px 0 rgba(168, 211, 255, 0.06);
+}
+
+/* spectrum divider — signal → iris → mint */
+.rule-signal {
+  background: linear-gradient(90deg, transparent, rgba(61,139,253,0.7) 16%, rgba(155,109,255,0.5) 50%, rgba(47,212,168,0.5) 84%, transparent);
+}
+
+/* faint engineering grid backdrop — the graph paper of a spec sheet */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(168, 211, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(168, 211, 255, 0.045) 1px, transparent 1px);
+  background-size: 46px 46px;
+}
+.grid-fine {
+  background-image:
+    linear-gradient(rgba(168, 211, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(168, 211, 255, 0.05) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* animated dash flow — current moving through a circuit / supply line */
+@keyframes flow { to { stroke-dashoffset: -36; } }
+.flow { stroke-dasharray: 4 8; animation: flow 1.4s linear infinite; }
+
+@keyframes pulseGlow { 0%,100% { opacity: 0.45; } 50% { opacity: 1; } }
+.pulse { animation: pulseGlow 2.4s ease-in-out infinite; }
+
+@keyframes drift { 0% { transform: translateY(0); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0); } }
+.drift { animation: drift 7s ease-in-out infinite; }
+
+@keyframes riseIn { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+.rise-in { animation: riseIn 0.9s cubic-bezier(0.2,0.7,0.2,1) both; }
+.lang-fade { animation: riseIn 0.42s ease both; }
+
+/* scanning console ticker */
+@keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+.ticker { animation: ticker 42s linear infinite; }
+
+/* slow rotation for gears / orbital systems */
+@keyframes spinslow { to { transform: rotate(360deg); } }
+.spin-slow { animation: spinslow 24s linear infinite; transform-origin: center; }
+@keyframes spinrev { to { transform: rotate(-360deg); } }
+.spin-rev { animation: spinrev 30s linear infinite; transform-origin: center; }
+
+/* scan-line sweep across a screen surface */
+@keyframes scan { 0% { transform: translateY(-100%); } 100% { transform: translateY(900%); } }
+.scan { animation: scan 5s linear infinite; }
+
+/* shimmer pass for luminous edges */
+@keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+.shimmer {
+  background: linear-gradient(100deg, transparent 30%, rgba(168,211,255,0.5) 50%, transparent 70%);
+  background-size: 200% 100%;
+  animation: shimmer 3.4s linear infinite;
+}
+
+/* blinking caret */
+@keyframes blink { 0%,49% { opacity: 1; } 50%,100% { opacity: 0; } }
+.caret { animation: blink 1s step-end infinite; }
+
+/* nervous micro-jitter — friction / bad-design state */
+@keyframes jitter {
+  0% { transform: translate(0,0); }
+  25% { transform: translate(-0.5px,0.5px); }
+  50% { transform: translate(0.5px,-0.5px); }
+  75% { transform: translate(-0.5px,-0.5px); }
+  100% { transform: translate(0,0); }
+}
+.jitter { animation: jitter 0.9s steps(2) infinite; }
+
+::-webkit-scrollbar { width: 10px; background: #06070a; }
+::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #16203a, #1f2d52); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: #1f6fe0; }
